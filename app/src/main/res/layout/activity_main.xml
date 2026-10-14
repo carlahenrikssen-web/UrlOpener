@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="URL Opener"
+            android:textColor="@color/primary"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="Step 1: pick the app · Step 2: paste the URL · Open"
+            android:textSize="13sp" />
+
+        <!-- STEP 1: APP PICKER -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Step 1 - App to open links with"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerApp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp" />
+
+        <!-- STEP 2: URL TABS -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Step 2 - Your URL"
+            android:textStyle="bold" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/primary" />
+
+        <!-- LONG URL PANE -->
+        <LinearLayout
+            android:id="@+id/paneLong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etLong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Paste long URL, e.g. https://www.foodora.se/login/new?action=..."
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine|textUri"
+                android:minLines="3"
+                android:maxLines="6"
+                android:gravity="top" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnPasteLong"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Paste" />
+
+                <Button
+                    android:id="@+id/btnPickFile"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:text="File picker" />
+
+                <Button
+                    android:id="@+id/btnLongClear"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:text="Clear" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnOpenLong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/primary"
+                android:text="Open long URL"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <!-- SHORT URL PANE -->
+        <LinearLayout
+            android:id="@+id/paneShort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="shorturl.at value (from https://shorturl.at/):"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/etShort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="e.g. 6UcjW"
+                android:importantForAutofill="no"
+                android:inputType="textUri"
+                android:singleLine="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnPasteShort"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Paste" />
+
+                <Button
+                    android:id="@+id/btnShortClear"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:text="Clear" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnOpenShort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/primary"
+                android:text="Open short URL (shorturl.at/value)"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <!-- OPTIONS -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Options"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/chkRemember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Remember last URLs" />
+
+        <CheckBox
+            android:id="@+id/chkLog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Save opened links to history" />
+
+        <!-- HISTORY -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="History"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 saved link(s)"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <Button
+                android:id="@+id/btnExport"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Export .txt" />
+
+            <Button
+                android:id="@+id/btnClearHistory"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="Clear history" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="8dp"
+            android:background="#F2F2F2"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textIsSelectable="true"
+                android:textSize="12sp"
+                android:text="No history yet." />
+        </ScrollView>
+
+    </LinearLayout>
+</ScrollView>
